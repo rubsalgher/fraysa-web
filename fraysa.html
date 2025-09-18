@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva para Caracterización de Yacimientos - FRAYSA</title>
+    <style>
+        /* CSS para estilos y responsividad */
+        :root {
+            --primary-color: #003366; /* Azul oscuro corporativo */
+            --secondary-color: #0099cc; /* Azul claro para acentos */
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header y Navegación --- */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 40px; /* Ajusta este valor si quieres el logo más grande o pequeño */
+            width: auto;  /* Mantiene la proporción original de la imagen */
+            vertical-align: middle; /* Ayuda a alinear el logo con los links del menú */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('https://i.imgur.com/5uVAmM1.jpeg') no-repeat center center/cover;
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #introduccion {
+            background: var(--light-gray);
+            padding: 100px 20px; /* Aumentamos el espacio vertical y añadimos un poco a los lados */
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--secondary-color);
+            color: rgba(255, 255, 255, 0.75); /* Letra blanca semi-transparente (tenue) */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease; /* Animará todos los cambios (color y fondo) */
+        }
+
+        .btn:hover {
+            background: #0077b3;
+            color: var(--white); /* Letra blanca completamente visible (mucho más) */
+        }
+
+        /* --- Secciones Generales --- */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        /* --- Comparativa Interactiva --- */
+        .comparator-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .toggle-btn {
+            background: var(--light-gray);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:first-child {
+            border-radius: 5px 0 0 5px;
+        }
+        .toggle-btn:last-child {
+            border-radius: 0 5px 5px 0;
+            border-left: none;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- Checklists --- */
+        .accordion-item {
+            background: var(--white);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .accordion-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            padding: 0 20px;
+        }
+        
+        .accordion-content ul {
+            list-style: none;
+            padding: 15px 0;
+        }
+
+        .accordion-content li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .accordion-content input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        /* --- Proceso de Recopilación --- */
+        .process-list {
+            list-style: none;
+        }
+        
+        .process-list li {
+            background: var(--white);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .process-list strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* --- Contacto --- */
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* --- Media Queries para Responsividad --- */
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none; /* Simplificar para un menú hamburguesa si se desea */
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <div class="logo"><img src="Logo.png" alt="Logo de FRAYSA">FRAYSA</div>
+            <ul class="nav-links">
+                <li><a href="#introduccion">Introducción</a></li>
+                <li><a href="#comparativa">Comparativa</a></li>
+                <li><a href="#checklists">Checklists</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#productividad">Productividad</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <video autoplay loop muted playsinline id="hero-video">
+                <source src="hero-video.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+
+            <div class="hero-content">
+                <h1>Guía Interactiva para la Caracterización de Yacimientos</h1>
+                <p>"Experiencia en el diseño y manejo eficiente de la producción de hidrocarburos".</p>
+                <a href="#introduccion" class="btn">Iniciar Guía</a>
+            </div>
+        </section>
+
+        <section id="introduccion">
+            <div class="container"> 
+                <h2 class="section-title">Propósito de la Guía</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Para la elaboración del documento soporte de decisión, es crucial considerar los aspectos técnicos y económicos para evaluar cada proyecto. A continuación, se describen los aspectos clave a considerar en la etapa de revisión del cuarto de datos técnicos, dando énfasis al tipo de información que se debe revisar dependiendo si el yacimiento es convencional o no convencional.
+                </p>
+            </div>
+        </section>
+
+        <section id="comparativa">
+            <div class="container">
+                <h2 class="section-title">Comparativa de Requerimientos</h2>
+                <div class="comparator-toggle">
+                    <button class="toggle-btn active" id="conv-btn" data-type="convencional">Yacimientos Convencionales</button>
+                    <button class="toggle-btn" id="noconv-btn" data-type="noConvencional">Yacimientos No Convencionales</button>
+                </div>
+                <div class="cards-grid" id="info-cards">
+                    <div class="card">
+                        <h3>1. Geología</h3>
+                        <p id="geologia-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>2. Petrofísica</h3>
+                        <p id="petrofisica-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Geofísica</h3>
+                        <p id="geofisica-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>4. Geomecánica</h3>
+                        <p id="geomecanica-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>5. Fluidos</h3>
+                        <p id="fluidos-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>6. Pruebas de Pozos</h3>
+                        <p id="pruebas-text"></p>
+                    </div>
+                     <div class="card">
+                        <h3>7. Producción</h3>
+                        <p id="produccion-text"></p>
+                    </div>
+                    <div class="card">
+                        <h3>8. Información Dinámica Adicional</h3>
+                        <p id="dinamica-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="checklists">
+            <div class="container">
+                <h2 class="section-title">Checklists Detallados por Disciplina ✅</h2>
+
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; margin-top: 30px;">Yacimientos Convencionales</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header">▶ Información Geológica</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><input type="checkbox"><span>Columnas estratigráficas y correlaciones de pozos.</span></li>
+                            <li><input type="checkbox"><span>Descripción de núcleos y recortes (litología, facies, textura).</span></li>
+                            <li><input type="checkbox"><span>Mapas estructurales y estratigráficos (isopacas, isopacas netas, facies, topes y bases).</span></li>
+                            <li><input type="checkbox"><span>Paleontología y estudios de ambientes depositacionales.</span></li>
+                            <li><input type="checkbox"><span>Análisis de diagénesis y fracturamiento natural.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="accordion-item">
+                    <div class="accordion-header">▶ Información Geofísica</div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li><input type="checkbox"><span>Secciones sísmicas 2D y 3D procesadas e interpretadas.</span></li>
+                            <li><input type="checkbox"><span>Atributos sísmicos (inversión sísmica, amplitud vs. offset, etc.).</span></li>
+                            <li><input type="checkbox"><span>Integración sísmica con registros de pozo (well-tie).</span></li>
+                            <li><input type="checkbox"><span>Modelos de velocidad y tiempo-profundidad.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">▶ Información Petrofísica y de Fluidos</div>
+                    <div class="accordion-content">
+                        <p><strong>Petrofísica:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Registros eléctricos y geofísicos de pozo (SP, resistividad, sónico, densidad, neutrón, imagen FMI).</span></li>
+                            <li><input type="checkbox"><span>Calibración con núcleos: porosidad, permeabilidad, saturación, capilaridad.</span></li>
+                            <li><input type="checkbox"><span>Identificación de contactos agua-aceite y gas-aceite.</span></li>
+                        </ul>
+                        <p><strong>Fluidos:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Análisis PVT (presión-volumen-temperatura) de aceites, gas y agua.</span></li>
+                            <li><input type="checkbox"><span>Composición química de fluidos.</span></li>
+                            <li><input type="checkbox"><span>Presión de burbuja, punto de rocío, factor de volumen de formación.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="accordion-item">
+                    <div class="accordion-header">▶ Información de Presión, Pruebas y Producción</div>
+                    <div class="accordion-content">
+                        <p><strong>Presión y Pruebas de Pozos:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Pruebas de presión-transmisión (DST, RFT, MDT).</span></li>
+                            <li><input type="checkbox"><span>Registros de presiones estáticas y dinámicas.</span></li>
+                             <li><input type="checkbox"><span>Historias de presión a lo largo del tiempo.</span></li>
+                        </ul>
+                        <p><strong>Producción e Ingeniería:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Historia de producción por pozo (aceite, gas, agua, GLR, WOR).</span></li>
+                            <li><input type="checkbox"><span>Condiciones de producción e inyección (volúmenes y presiones).</span></li>
+                            <li><input type="checkbox"><span>Balance de materiales.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; margin-top: 30px;">Yacimientos No Convencionales</h3>
+                <div class="accordion-item">
+                    <div class="accordion-header">▶ Información Geológica y Mineralógica</div>
+                    <div class="accordion-content">
+                         <p><strong>Geología:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Estratigrafía detallada a microescala (centimétrica).</span></li>
+                            <li><input type="checkbox"><span>Mapas de extensión y espesor de la roca generadora.</span></li>
+                            <li><input type="checkbox"><span>Descripción de laminaciones y fracturas naturales.</span></li>
+                        </ul>
+                        <p><strong>Mineralogía y Petrofísica Especial:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Contenido mineralógico (cuarzo, arcillas, carbonatos).</span></li>
+                            <li><input type="checkbox"><span>TOC (Total Organic Carbon).</span></li>
+                            <li><input type="checkbox"><span>Madurez del kerógeno (Ro, Tmax en pirólisis Rock-Eval).</span></li>
+                            <li><input type="checkbox"><span>Nano-porosidad y nano-permeabilidad.</span></li>
+                            <li><input type="checkbox"><span>Saturación de fluidos en microporos (gas adsorbido vs gas libre).</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">▶ Información Geofísica y Geomecánica</div>
+                    <div class="accordion-content">
+                        <p><strong>Geofísica:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Sísmica 3D de alta resolución y atributos para fracturas.</span></li>
+                            <li><input type="checkbox"><span>Atributos sísmicos anisotrópicos (AVOaz).</span></li>
+                            <li><input type="checkbox"><span>Sísmica microseísmica para monitoreo de fracturamiento.</span></li>
+                        </ul>
+                         <p><strong>Geomecánica:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Esfuerzos in-situ (mínimo, máximo y vertical).</span></li>
+                            <li><input type="checkbox"><span>Módulo de Young y coeficiente de Poisson.</span></li>
+                            <li><input type="checkbox"><span>Fragilidad de la roca (brittleness index).</span></li>
+                            <li><input type="checkbox"><span>Presión de poro y gradiente de fractura.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">▶ Información de Fluidos, Pruebas y Producción</div>
+                    <div class="accordion-content">
+                        <p><strong>Fluidos:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Análisis PVT en condiciones de confinamiento.</span></li>
+                            <li><input type="checkbox"><span>Adsorción/desorción de gas en la matriz orgánica.</span></li>
+                        </ul>
+                         <p><strong>Pruebas de Pozos:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Registros de presión transitoria (DFIT - Diagnostic Fracture Injection Test).</span></li>
+                            <li><input type="checkbox"><span>Pruebas de flujo multietapa en pozos horizontales.</span></li>
+                        </ul>
+                        <p><strong>Producción:</strong></p>
+                        <ul>
+                            <li><input type="checkbox"><span>Historia de producción inicial (IP30, IP90, IP180).</span></li>
+                            <li><input type="checkbox"><span>Producción por etapa de fractura.</span></li>
+                             <li><input type="checkbox"><span>Declive de producción (curvas tipo, análisis DCA para shale).</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proceso">
+            <div class="container">
+                <h2 class="section-title">Guía de Verificación y Recopilación</h2>
+                <ul class="process-list">
+                    <li>
+                        <strong>1. Inventario Inicial:</strong>
+                        Verificar, recopilar y clasificar toda la información disponible del área de estudio (pozos, perfiles, sísmica, producción, etc.) para identificar datos faltantes.
+                    </li>
+                    <li>
+                        <strong>2. Historial de Pozos (RMA):</strong>
+                        Utilizar archivos y bases de datos corporativas para identificar la historia de reparaciones de cada pozo e incorporarla cronológicamente.
+                    </li>
+                     <li>
+                        <strong>3. Muestras Litológicas:</strong>
+                        Revisar informes de núcleos y muestras, diferenciando entre análisis convencionales (porosidad, permeabilidad) y especiales (presiones capilares, etc.).
+                    </li>
+                    <li>
+                        <strong>4. Análisis PVT:</strong>
+                        Verificar la disponibilidad y cantidad de muestras y análisis PVT.
+                    </li>
+                     <li>
+                        <strong>5. Pruebas de Presión:</strong>
+                        Clasificar las pruebas de presión (restauración, estática, dinámica) y asegurar que contengan la información mínima requerida (fecha, tipo, gradientes, etc.).
+                    </li>
+                     <li>
+                        <strong>6. Mapas y Estudios Previos:</strong>
+                        Recopilar mapas oficiales y operacionales (estructurales, isópacos, etc.) y analizar estudios anteriores para comprender el alcance y la consistencia de las interpretaciones.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="productividad">
+            <div class="container">
+                 <h2 class="section-title">Información para Estudios de Productividad (RME)</h2>
+                 <p class="section-subtitle" style="text-align:center; margin-top:-30px; margin-bottom: 30px;">Oportunidades de Incremento de Producción, Optimizar Red de BN, Optimizar Infraestructura de Producción.</p>
+                 <div class="cards-grid">
+                    <div class="card"><h3>1. Historia de Producción</h3> </div>
+                    <div class="card"><h3>2. Trabajos de Subsuelo</h3> </div>
+                    <div class="card"><h3>3. Presiones de Fondo</h3> </div>
+                    <div class="card"><h3>4. Terminaciones Actuales</h3> </div>
+                    <div class="card"><h3>5. Planos de Infraestructura</h3> </div>
+                    <div class="card"><h3>6. Planos de Distribución de Gas</h3> </div>
+                    <div class="card"><h3>7. Presiones en Cabezal</h3> </div>
+                    <div class="card"><h3>8. Presiones de Exportación</h3> </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container contact-info">
+                 <h2 class="section-title">Contacto</h2>
+                 <p>Para más información sobre nuestros servicios de ingeniería y consultoría, no dude en contactarnos.</p>
+                 <p>
+                     <a href="mailto:maricruz@fraysa.com">maricruz@fraysa.com</a> | 
+                     <a href="mailto:franciscodefray@gmail.com">franciscodefray@gmail.com</a>
+                 </p>
+                 <br>
+                 <a href="http://www.fraysa.com" class="btn" target="_blank">Visitar Fraysa.com</a>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 FRAYSA Ingeniería de Procesos y Consultoría. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // JavaScript para la interactividad
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Datos para la comparativa ---
+            const data = {
+                convencional: {
+                    geologia: "Columnas estratigráficas, facies, correlaciones de pozos, mapas estructurales e isopacas.",
+                    petrofisica: "Porosidad, permeabilidad, saturación, registros eléctricos, calibración con núcleos.",
+                    geofisica: "Sísmica 2D/3D, atributos sísmicos, integración con registros de pozo.",
+                    geomecanica: "Generalmente no crítico, pero se incluyen gradientes de presión y propiedades elásticas básicas.",
+                    fluidos: "PVT de aceites, gas y agua. Presión de burbuja, punto de rocío, factores volumétricos.",
+                    pruebas: "DST, RFT, MDT, pruebas de interferencia, registros de presión.",
+                    produccion: "Historia de producción por pozo (aceite, gas, agua). Condiciones de producción y de inyección.",
+                    dinamica: "Modelos de simulación estáticos y dinámicos, análisis de fronteras y compartimentalización."
+                },
+                // CORRECCIÓN: Se cambió "no-convencional" a "noConvencional" para ser un identificador válido sin comillas.
+                noConvencional: {
+                    geologia: "Estratigrafía de alta resolución (centimétrica), TOC, ambientes Depositacionales detallados, fracturas naturales.",
+                    petrofisica: "Mineralogía (cuarzo, arcillas, carbonatos), TOC, madurez térmica, nanoporosidad y nano-permeabilidad, SCAL.",
+                    geofisica: "Sísmica 3D de alta resolución, atributos anisotrópicos, microseismicidad, integración con FMI.",
+                    geomecanica: "Esfuerzos in-situ, módulo de Young, coeficiente de Poisson, fragilidad de la roca, ventana de perforación.",
+                    fluidos: "PVT bajo confinamiento, gas adsorbido vs gas libre, isotopía de gas.",
+                    pruebas: "DFIT (pruebas de inyección diagnóstica), pruebas en pozos horizontales multietapa, monitoreo de fracturas.",
+                    produccion: "Producción inicial (IP30, IP90, IP180), curvas de declinación, producción por etapa de fractura.",
+                    dinamica: "Trazadores, microseismicidad, modelos de flujo en nanoescala, trayectorias horizontales, evaluación económica."
+                }
+            };
+
+            const convBtn = document.getElementById('conv-btn');
+            const noconvBtn = document.getElementById('noconv-btn');
+
+            // --- Función para actualizar las tarjetas de información ---
+            function updateCards(type) {
+                document.getElementById('geologia-text').textContent = data[type].geologia;
+                document.getElementById('petrofisica-text').textContent = data[type].petrofisica;
+                document.getElementById('geofisica-text').textContent = data[type].geofisica;
+                document.getElementById('geomecanica-text').textContent = data[type].geomecanica;
+                document.getElementById('fluidos-text').textContent = data[type].fluidos;
+                document.getElementById('pruebas-text').textContent = data[type].pruebas;
+                document.getElementById('produccion-text').textContent = data[type].produccion;
+                document.getElementById('dinamica-text').textContent = data[type].dinamica;
+            }
+            
+            // --- Event Listeners para los botones de la comparativa ---
+            convBtn.addEventListener('click', () => {
+                convBtn.classList.add('active');
+                noconvBtn.classList.remove('active');
+                updateCards('convencional');
+            });
+
+            noconvBtn.addEventListener('click', () => {
+                noconvBtn.classList.add('active');
+                convBtn.classList.remove('active');
+                // CORRECCIÓN: Llamar a la función con la nueva clave "noConvencional"
+                updateCards('noConvencional');
+            });
+
+            // Cargar datos iniciales
+            updateCards('convencional');
+            
+            // --- Lógica del Acordeón ---
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    
+                    const isActive = header.classList.contains('active');
+
+                    // Cierra todos los acordeones
+                    accordionHeaders.forEach(otherHeader => {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.maxHeight = null;
+                        otherHeader.nextElementSibling.style.padding = '0 20px';
+                    });
+
+                    // Si no estaba activo, ábrelo
+                    if (!isActive) {
+                        header.classList.add('active');
+                        content.style.padding = '15px 20px';
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
