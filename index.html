@@ -705,20 +705,21 @@
             accordionHeaders.forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
-                    
                     const isActive = header.classList.contains('active');
 
-                    // Cierra todos los acordeones
-                    accordionHeaders.forEach(otherHeader => {
-                        otherHeader.classList.remove('active');
-                        otherHeader.nextElementSibling.style.maxHeight = null;
-                        otherHeader.nextElementSibling.style.padding = '0 20px';
+                    // Primero, cierra todos los paneles
+                    accordionHeaders.forEach(h => {
+                        h.classList.remove('active');
+                        h.nextElementSibling.style.maxHeight = null;
+                        h.nextElementSibling.style.paddingTop = '0px';
+                        h.nextElementSibling.style.paddingBottom = '0px';
                     });
 
-                    // Si no estaba activo, ábrelo
+                    // Si el que se clickeó no estaba activo, lo abrimos
                     if (!isActive) {
                         header.classList.add('active');
-                        content.style.padding = '15px 20px';
+                        content.style.paddingTop = '15px';
+                        content.style.paddingBottom = '15px';
                         content.style.maxHeight = content.scrollHeight + "px";
                     }
                 });
