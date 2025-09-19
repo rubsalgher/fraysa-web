@@ -83,6 +83,10 @@
             color: var(--secondary-color);
         }
 
+        .accordion-content p {
+            margin-bottom: 1rem;
+        }
+
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
@@ -707,7 +711,7 @@
                     const content = header.nextElementSibling;
                     const isActive = header.classList.contains('active');
 
-                    // Primero, cierra todos los paneles
+                    // Cierra todos los paneles
                     accordionHeaders.forEach(h => {
                         h.classList.remove('active');
                         h.nextElementSibling.style.maxHeight = null;
